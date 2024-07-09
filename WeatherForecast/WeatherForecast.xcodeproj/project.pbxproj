@@ -15,6 +15,12 @@
 		384F48BE2C3CFADE009EE46E /* WeatherForecastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384F48BD2C3CFADE009EE46E /* WeatherForecastTests.swift */; };
 		384F48C82C3CFADE009EE46E /* WeatherForecastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384F48C72C3CFADE009EE46E /* WeatherForecastUITests.swift */; };
 		384F48CA2C3CFADE009EE46E /* WeatherForecastUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384F48C92C3CFADE009EE46E /* WeatherForecastUITestsLaunchTests.swift */; };
+		384F48D82C3CFF82009EE46E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 384F48D72C3CFF82009EE46E /* SnapKit */; };
+		384F48DA2C3CFF82009EE46E /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 384F48D92C3CFF82009EE46E /* SnapKit-Dynamic */; };
+		384F48DD2C3CFFDE009EE46E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 384F48DC2C3CFFDE009EE46E /* RxCocoa */; };
+		384F48DF2C3CFFDE009EE46E /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 384F48DE2C3CFFDE009EE46E /* RxRelay */; };
+		384F48E12C3CFFDE009EE46E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 384F48E02C3CFFDE009EE46E /* RxSwift */; };
+		384F48E42C3D0507009EE46E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 384F48E32C3D0507009EE46E /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +60,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				384F48DD2C3CFFDE009EE46E /* RxCocoa in Frameworks */,
+				384F48D82C3CFF82009EE46E /* SnapKit in Frameworks */,
+				384F48E12C3CFFDE009EE46E /* RxSwift in Frameworks */,
+				384F48E42C3D0507009EE46E /* Alamofire in Frameworks */,
+				384F48DF2C3CFFDE009EE46E /* RxRelay in Frameworks */,
+				384F48DA2C3CFF82009EE46E /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +152,14 @@
 			dependencies = (
 			);
 			name = WeatherForecast;
+			packageProductDependencies = (
+				384F48D72C3CFF82009EE46E /* SnapKit */,
+				384F48D92C3CFF82009EE46E /* SnapKit-Dynamic */,
+				384F48DC2C3CFFDE009EE46E /* RxCocoa */,
+				384F48DE2C3CFFDE009EE46E /* RxRelay */,
+				384F48E02C3CFFDE009EE46E /* RxSwift */,
+				384F48E32C3D0507009EE46E /* Alamofire */,
+			);
 			productName = WeatherForecast;
 			productReference = 384F48A32C3CFADD009EE46E /* WeatherForecast.app */;
 			productType = "com.apple.product-type.application";
@@ -212,6 +232,11 @@
 				Base,
 			);
 			mainGroup = 384F489A2C3CFADD009EE46E;
+			packageReferences = (
+				384F48D62C3CFF82009EE46E /* XCRemoteSwiftPackageReference "SnapKit" */,
+				384F48DB2C3CFFDE009EE46E /* XCRemoteSwiftPackageReference "rxswift" */,
+				384F48E22C3D0507009EE46E /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 384F48A42C3CFADD009EE46E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -597,6 +622,66 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		384F48D62C3CFF82009EE46E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		384F48DB2C3CFFDE009EE46E /* XCRemoteSwiftPackageReference "rxswift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/reactivex/rxswift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
+		384F48E22C3D0507009EE46E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		384F48D72C3CFF82009EE46E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 384F48D62C3CFF82009EE46E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		384F48D92C3CFF82009EE46E /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 384F48D62C3CFF82009EE46E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+		384F48DC2C3CFFDE009EE46E /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 384F48DB2C3CFFDE009EE46E /* XCRemoteSwiftPackageReference "rxswift" */;
+			productName = RxCocoa;
+		};
+		384F48DE2C3CFFDE009EE46E /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 384F48DB2C3CFFDE009EE46E /* XCRemoteSwiftPackageReference "rxswift" */;
+			productName = RxRelay;
+		};
+		384F48E02C3CFFDE009EE46E /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 384F48DB2C3CFFDE009EE46E /* XCRemoteSwiftPackageReference "rxswift" */;
+			productName = RxSwift;
+		};
+		384F48E32C3D0507009EE46E /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 384F48E22C3D0507009EE46E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 384F489B2C3CFADD009EE46E /* Project object */;
 }
