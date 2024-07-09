@@ -13,12 +13,7 @@ final class MainViewController: UIViewController {
   let scrollView = UIScrollView()
   
   let cityWeatherView = MainCityWeatherView()
-  
-  lazy var weatherByHoursView: UIView = {
-    let view = UIView()
-    view.backgroundColor = .blue
-    return view
-  }()
+  let weatherByHoursView = WeatherByHoursView()
   
   lazy var weatherForFiveDaysView: UIView = {
     let view = UIView()
@@ -34,6 +29,7 @@ final class MainViewController: UIViewController {
     
     // temp
     cityWeatherView.update(cityTitle: "Seoul", currentTemperature: 24.8, weather: "Rain", minTemp: 20.3, maxTemp: 27)
+    weatherByHoursView.update(items: ["", "", "", "", "", "", "", "", "", "", "", "", "", ""])
   }
 
 }
@@ -70,7 +66,6 @@ extension MainViewController {
     weatherByHoursView.snp.makeConstraints {
       $0.top.equalTo(cityWeatherView.snp.bottom)
       $0.leading.trailing.equalToSuperview()
-      $0.height.equalTo(160)
     }
   }
   
