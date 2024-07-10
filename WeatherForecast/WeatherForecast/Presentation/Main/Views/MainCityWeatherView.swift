@@ -73,7 +73,6 @@ final class MainCityWeatherView: UIView {
 
 extension MainCityWeatherView {
   private func configure() {
-    backgroundColor = .darkGray
     layout()
   }
   

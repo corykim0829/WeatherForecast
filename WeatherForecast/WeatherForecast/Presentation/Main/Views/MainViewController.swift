@@ -15,6 +15,12 @@ final class MainViewController: UIViewController {
 
   let scrollView = UIScrollView()
   
+  lazy var backgroundImageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.contentMode = .scaleAspectFill
+    imageView.image = UIImage(named: "sunny")
+    return imageView
+  }()
   let cityWeatherView = MainCityWeatherView()
   let weatherByHoursView = WeatherByHoursView()
   
@@ -43,6 +49,9 @@ final class MainViewController: UIViewController {
       .asDriver()
       .drive { response in
         guard let response = response else { return }
+        if let backgroundImageName = response.weathers.first?.weatherDatas.first?.main {
+          self.backgroundImageView.image = UIImage(named: backgroundImageName.lowercased())
+        }
         self.cityWeatherView.update(weatherResponse: response)
         self.weatherByHoursView.update(weatherResponse: response)
       }
@@ -54,16 +63,25 @@ final class MainViewController: UIViewController {
 extension MainViewController {
   
   private func layout() {
+    layoutBackgroundImageView()
     layoutScrollView()
     layoutCityWeatherView()
     layoutWeatherByHoursView()
     layoutWeatherForFiveDaysView()
   }
   
+  private func layoutBackgroundImageView() {
+    view.addSubview(backgroundImageView)
+    backgroundImageView.snp.makeConstraints {
+      $0.edges.equalToSuperview()
+    }
+  }
+  
   private func layoutScrollView() {
     view.addSubview(scrollView)
     scrollView.alwaysBounceVertical = true
     scrollView.alwaysBounceHorizontal = false
+    scrollView.backgroundColor = .clear
     scrollView.snp.makeConstraints {
       $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
       $0.leading.trailing.bottom.equalTo(view)
