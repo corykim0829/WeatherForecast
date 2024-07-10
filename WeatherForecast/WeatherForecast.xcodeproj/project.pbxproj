@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		384096DF2C3E24B300D371A0 /* WeatherResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384096DE2C3E24B300D371A0 /* WeatherResponseDTO.swift */; };
+		384096E12C3E263100D371A0 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384096E02C3E263100D371A0 /* Coordinate.swift */; };
+		384096E32C3E2EA000D371A0 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384096E22C3E2EA000D371A0 /* City.swift */; };
+		384096E52C3E2F4900D371A0 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384096E42C3E2F4900D371A0 /* Weather.swift */; };
 		384F48A72C3CFADD009EE46E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384F48A62C3CFADD009EE46E /* AppDelegate.swift */; };
 		384F48A92C3CFADD009EE46E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384F48A82C3CFADD009EE46E /* SceneDelegate.swift */; };
 		384F48AB2C3CFADD009EE46E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384F48AA2C3CFADD009EE46E /* MainViewController.swift */; };
@@ -24,6 +28,7 @@
 		384F48E72C3D0FC3009EE46E /* MainCityWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384F48E62C3D0FC3009EE46E /* MainCityWeatherView.swift */; };
 		384F48E92C3D3EDF009EE46E /* WeatherByHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384F48E82C3D3EDF009EE46E /* WeatherByHoursView.swift */; };
 		384F48EB2C3D5079009EE46E /* WeatherByHoursItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384F48EA2C3D5079009EE46E /* WeatherByHoursItemView.swift */; };
+		384F48F02C3D7CC6009EE46E /* OpenWeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384F48EF2C3D7CC6009EE46E /* OpenWeatherAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		384096DE2C3E24B300D371A0 /* WeatherResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponseDTO.swift; sourceTree = "<group>"; };
+		384096E02C3E263100D371A0 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		384096E22C3E2EA000D371A0 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		384096E42C3E2F4900D371A0 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		384F48A32C3CFADD009EE46E /* WeatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		384F48A62C3CFADD009EE46E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		384F48A82C3CFADD009EE46E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +68,7 @@
 		384F48E62C3D0FC3009EE46E /* MainCityWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCityWeatherView.swift; sourceTree = "<group>"; };
 		384F48E82C3D3EDF009EE46E /* WeatherByHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherByHoursView.swift; sourceTree = "<group>"; };
 		384F48EA2C3D5079009EE46E /* WeatherByHoursItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherByHoursItemView.swift; sourceTree = "<group>"; };
+		384F48EF2C3D7CC6009EE46E /* OpenWeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +102,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		384096DB2C3E231200D371A0 /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+				384096DE2C3E24B300D371A0 /* WeatherResponseDTO.swift */,
+			);
+			path = DataMapping;
+			sourceTree = "<group>";
+		};
+		384096DC2C3E232200D371A0 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				384096DD2C3E234100D371A0 /* Entities */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		384096DD2C3E234100D371A0 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				384096E02C3E263100D371A0 /* Coordinate.swift */,
+				384096E22C3E2EA000D371A0 /* City.swift */,
+				384096E42C3E2F4900D371A0 /* Weather.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		384F489A2C3CFADD009EE46E = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +151,8 @@
 		384F48A52C3CFADD009EE46E /* WeatherForecast */ = {
 			isa = PBXGroup;
 			children = (
+				384096DC2C3E232200D371A0 /* Domain */,
+				384F48ED2C3D7A44009EE46E /* Data */,
 				384F48E52C3D085E009EE46E /* Views */,
 				384F48A62C3CFADD009EE46E /* AppDelegate.swift */,
 				384F48A82C3CFADD009EE46E /* SceneDelegate.swift */,
@@ -151,6 +189,23 @@
 				384F48EA2C3D5079009EE46E /* WeatherByHoursItemView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		384F48ED2C3D7A44009EE46E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				384F48EE2C3D7A4B009EE46E /* Network */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		384F48EE2C3D7A4B009EE46E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				384F48EF2C3D7CC6009EE46E /* OpenWeatherAPI.swift */,
+				384096DB2C3E231200D371A0 /* DataMapping */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,8 +352,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				384F48AB2C3CFADD009EE46E /* MainViewController.swift in Sources */,
+				384096DF2C3E24B300D371A0 /* WeatherResponseDTO.swift in Sources */,
 				384F48E92C3D3EDF009EE46E /* WeatherByHoursView.swift in Sources */,
+				384096E52C3E2F4900D371A0 /* Weather.swift in Sources */,
+				384F48F02C3D7CC6009EE46E /* OpenWeatherAPI.swift in Sources */,
 				384F48E72C3D0FC3009EE46E /* MainCityWeatherView.swift in Sources */,
+				384096E12C3E263100D371A0 /* Coordinate.swift in Sources */,
+				384096E32C3E2EA000D371A0 /* City.swift in Sources */,
 				384F48EB2C3D5079009EE46E /* WeatherByHoursItemView.swift in Sources */,
 				384F48A72C3CFADD009EE46E /* AppDelegate.swift in Sources */,
 				384F48A92C3CFADD009EE46E /* SceneDelegate.swift in Sources */,

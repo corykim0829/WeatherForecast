@@ -30,6 +30,7 @@ final class MainViewController: UIViewController {
     // temp
     cityWeatherView.update(cityTitle: "Seoul", currentTemperature: 24.8, weather: "Rain", minTemp: 20.3, maxTemp: 27)
     weatherByHoursView.update(items: ["", "", "", "", "", "", "", "", "", "", "", "", "", ""])
+    
   }
 
 }
