@@ -24,6 +24,7 @@ final class MainViewController: UIViewController {
   let cityWeatherView = MainCityWeatherView()
   let weatherByHoursView = MainWeatherByHoursView()
   let weatherForFiveDaysView = MainWeatherForFiveDaysView()
+  let mapView = MainMapView()
   
   let viewModel = MainViewModel()
   
@@ -69,6 +70,7 @@ extension MainViewController {
     layoutCityWeatherView()
     layoutWeatherByHoursView()
     layoutWeatherForFiveDaysView()
+    layoutMapView()
   }
   
   private func layoutBackgroundImageView() {
@@ -109,6 +111,14 @@ extension MainViewController {
     scrollView.addSubview(weatherForFiveDaysView)
     weatherForFiveDaysView.snp.makeConstraints {
       $0.top.equalTo(weatherByHoursView.snp.bottom)
+      $0.leading.trailing.equalToSuperview()
+    }
+  }
+  
+  private func layoutMapView() {
+    scrollView.addSubview(mapView)
+    mapView.snp.makeConstraints {
+      $0.top.equalTo(weatherForFiveDaysView.snp.bottom)
       $0.leading.bottom.trailing.equalToSuperview()
     }
   }
