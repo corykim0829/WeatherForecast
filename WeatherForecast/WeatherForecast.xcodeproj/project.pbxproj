@@ -131,6 +131,15 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		384096EC2C3E450F00D371A0 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				384F48A62C3CFADD009EE46E /* AppDelegate.swift */,
+				384F48A82C3CFADD009EE46E /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		384F489A2C3CFADD009EE46E = {
 			isa = PBXGroup;
 			children = (
@@ -154,11 +163,10 @@
 		384F48A52C3CFADD009EE46E /* WeatherForecast */ = {
 			isa = PBXGroup;
 			children = (
+				384096EC2C3E450F00D371A0 /* Application */,
 				384096DC2C3E232200D371A0 /* Domain */,
 				384F48ED2C3D7A44009EE46E /* Data */,
 				384F48E52C3D085E009EE46E /* Views */,
-				384F48A62C3CFADD009EE46E /* AppDelegate.swift */,
-				384F48A82C3CFADD009EE46E /* SceneDelegate.swift */,
 				384F48AA2C3CFADD009EE46E /* MainViewController.swift */,
 				384F48AF2C3CFADE009EE46E /* Assets.xcassets */,
 				384F48B12C3CFADE009EE46E /* LaunchScreen.storyboard */,
