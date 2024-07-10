@@ -12,6 +12,12 @@ struct WeatherResponseDTO: Decodable {
   let message, cnt: Int
   let list: [WeatherDTO]
   let city: CityDTO
+  
+  func toDomain() -> WeatherResponse {
+    return .init(
+      weathers: list.map{ $0.toDomain() },
+      city: city.toDomain())
+  }
 }
 
 extension WeatherResponseDTO {
