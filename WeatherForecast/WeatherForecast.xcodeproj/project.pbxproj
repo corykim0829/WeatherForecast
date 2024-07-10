@@ -13,6 +13,9 @@
 		384096E52C3E2F4900D371A0 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384096E42C3E2F4900D371A0 /* Weather.swift */; };
 		384096EB2C3E442500D371A0 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384096EA2C3E442500D371A0 /* WeatherResponse.swift */; };
 		384096F12C3E460A00D371A0 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384096F02C3E460A00D371A0 /* MainViewModel.swift */; };
+		384096F32C3E6C3E00D371A0 /* WeatherByDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384096F22C3E6C3E00D371A0 /* WeatherByDay.swift */; };
+		384096F52C3E717D00D371A0 /* MainWeatherForFiveDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384096F42C3E717D00D371A0 /* MainWeatherForFiveDaysView.swift */; };
+		384096F72C3E768200D371A0 /* MainWeatherForFiveDaysItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384096F62C3E768200D371A0 /* MainWeatherForFiveDaysItemView.swift */; };
 		384F48A72C3CFADD009EE46E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384F48A62C3CFADD009EE46E /* AppDelegate.swift */; };
 		384F48A92C3CFADD009EE46E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384F48A82C3CFADD009EE46E /* SceneDelegate.swift */; };
 		384F48AB2C3CFADD009EE46E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384F48AA2C3CFADD009EE46E /* MainViewController.swift */; };
@@ -57,6 +60,9 @@
 		384096E42C3E2F4900D371A0 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		384096EA2C3E442500D371A0 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		384096F02C3E460A00D371A0 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		384096F22C3E6C3E00D371A0 /* WeatherByDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherByDay.swift; sourceTree = "<group>"; };
+		384096F42C3E717D00D371A0 /* MainWeatherForFiveDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeatherForFiveDaysView.swift; sourceTree = "<group>"; };
+		384096F62C3E768200D371A0 /* MainWeatherForFiveDaysItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeatherForFiveDaysItemView.swift; sourceTree = "<group>"; };
 		384F48A32C3CFADD009EE46E /* WeatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		384F48A62C3CFADD009EE46E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		384F48A82C3CFADD009EE46E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +135,7 @@
 				384096E22C3E2EA000D371A0 /* City.swift */,
 				384096E42C3E2F4900D371A0 /* Weather.swift */,
 				384096EA2C3E442500D371A0 /* WeatherResponse.swift */,
+				384096F22C3E6C3E00D371A0 /* WeatherByDay.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -225,6 +232,8 @@
 				384F48E62C3D0FC3009EE46E /* MainCityWeatherView.swift */,
 				384F48E82C3D3EDF009EE46E /* WeatherByHoursView.swift */,
 				384F48EA2C3D5079009EE46E /* WeatherByHoursItemView.swift */,
+				384096F42C3E717D00D371A0 /* MainWeatherForFiveDaysView.swift */,
+				384096F62C3E768200D371A0 /* MainWeatherForFiveDaysItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -389,10 +398,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				384096F72C3E768200D371A0 /* MainWeatherForFiveDaysItemView.swift in Sources */,
 				384F48AB2C3CFADD009EE46E /* MainViewController.swift in Sources */,
 				384096DF2C3E24B300D371A0 /* WeatherResponseDTO.swift in Sources */,
+				384096F52C3E717D00D371A0 /* MainWeatherForFiveDaysView.swift in Sources */,
 				384F48E92C3D3EDF009EE46E /* WeatherByHoursView.swift in Sources */,
 				384096E52C3E2F4900D371A0 /* Weather.swift in Sources */,
+				384096F32C3E6C3E00D371A0 /* WeatherByDay.swift in Sources */,
 				384F48F02C3D7CC6009EE46E /* OpenWeatherAPI.swift in Sources */,
 				384096F12C3E460A00D371A0 /* MainViewModel.swift in Sources */,
 				384096EB2C3E442500D371A0 /* WeatherResponse.swift in Sources */,

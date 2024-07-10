@@ -23,12 +23,7 @@ final class MainViewController: UIViewController {
   }()
   let cityWeatherView = MainCityWeatherView()
   let weatherByHoursView = WeatherByHoursView()
-  
-  lazy var weatherForFiveDaysView: UIView = {
-    let view = UIView()
-    view.backgroundColor = .red
-    return view
-  }()
+  let weatherForFiveDaysView = MainWeatherForFiveDaysView()
   
   let viewModel = MainViewModel()
   
@@ -55,6 +50,12 @@ final class MainViewController: UIViewController {
         self.cityWeatherView.update(weatherResponse: response)
         self.weatherByHoursView.update(weatherResponse: response)
       }
+      .disposed(by: disposeBag)
+    
+    viewModel
+      .weathersForFiveDays
+      .asDriver(onErrorJustReturn: [])
+      .drive(onNext: weatherForFiveDaysView.update)
       .disposed(by: disposeBag)
   }
 
@@ -109,7 +110,6 @@ extension MainViewController {
     weatherForFiveDaysView.snp.makeConstraints {
       $0.top.equalTo(weatherByHoursView.snp.bottom)
       $0.leading.bottom.trailing.equalToSuperview()
-      $0.height.equalTo(500)
     }
   }
   
