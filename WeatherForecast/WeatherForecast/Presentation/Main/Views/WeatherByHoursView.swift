@@ -71,7 +71,7 @@ final class WeatherByHoursView: UIView {
     weatherResponse
       .weathers
       .filter {
-        $0.date < Date().addingTimeInterval(60 * 60 * 48)
+        $0.date <= Date().addingTimeInterval(60 * 60 * 48)
       }
       .forEach {
         let itemView = WeatherByHoursItemView()
@@ -126,11 +126,10 @@ extension WeatherByHoursView {
 }
 
 private let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "a h시"
-    formatter.calendar = Calendar(identifier: .iso8601)
-    formatter.timeZone = TimeZone(secondsFromGMT: 0)
-    formatter.locale = Locale(identifier: "ko_KR")
-    return formatter
+  let formatter = DateFormatter()
+  formatter.dateFormat = "a h시"
+  formatter.calendar = Calendar(identifier: .iso8601)
+  formatter.locale = Locale(identifier: "ko_KR")
+  return formatter
 }()
 
