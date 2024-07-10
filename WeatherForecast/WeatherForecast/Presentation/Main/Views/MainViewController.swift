@@ -7,6 +7,9 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
+import RxRelay
 
 final class MainViewController: UIViewController {
 
@@ -21,16 +24,29 @@ final class MainViewController: UIViewController {
     return view
   }()
   
+  let viewModel = MainViewModel()
+  
+  let disposeBag = DisposeBag()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     view.backgroundColor = .white
     layout()
+    bindViewModel()
+  }
+  
+  private func bindViewModel() {
     
-    // temp
-    cityWeatherView.update(cityTitle: "Seoul", currentTemperature: 24.8, weather: "Rain", minTemp: 20.3, maxTemp: 27)
-    weatherByHoursView.update(items: ["", "", "", "", "", "", "", "", "", "", "", "", "", ""])
-    
+    viewModel
+      .weatherResponse
+      .asDriver()
+      .drive { response in
+        guard let response = response else { return }
+        self.cityWeatherView.update(weatherResponse: response)
+        self.weatherByHoursView.update(weatherResponse: response)
+      }
+      .disposed(by: disposeBag)
   }
 
 }

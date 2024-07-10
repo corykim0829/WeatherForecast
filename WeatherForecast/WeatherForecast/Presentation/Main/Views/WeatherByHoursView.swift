@@ -67,13 +67,20 @@ final class WeatherByHoursView: UIView {
     configure()
   }
   
-  func update(items: [String]) {
-    items.forEach { _ in
-      let itemView = WeatherByHoursItemView()
-      // temp
-      itemView.update(time: "오후 11시", iconImage: "10d", temperature: "24º")
-      weathersStackView.addArrangedSubview(itemView)
-    }
+  func update(weatherResponse: WeatherResponse) {
+    weatherResponse
+      .weathers
+      .filter {
+        $0.date < Date().addingTimeInterval(60 * 60 * 48)
+      }
+      .forEach {
+        let itemView = WeatherByHoursItemView()
+        itemView.update(
+          time: dateFormatter.string(from: $0.date),
+          iconImage: $0.weatherDatas.first?.icon,
+          temperature: "\(Int(round($0.mainData.temp)))º")
+        weathersStackView.addArrangedSubview(itemView)
+      }
   }
   
 }
@@ -117,3 +124,13 @@ extension WeatherByHoursView {
   }
   
 }
+
+private let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "a h시"
+    formatter.calendar = Calendar(identifier: .iso8601)
+    formatter.timeZone = TimeZone(secondsFromGMT: 0)
+    formatter.locale = Locale(identifier: "ko_KR")
+    return formatter
+}()
+

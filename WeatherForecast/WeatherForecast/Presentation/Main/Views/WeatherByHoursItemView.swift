@@ -55,9 +55,11 @@ final class WeatherByHoursItemView: UIView {
     configure()
   }
   
-  func update(time: String, iconImage: String, temperature: String) {
+  func update(time: String, iconImage: String?, temperature: String) {
     timeLabel.text = time
-    weatherIconImageView.image = UIImage(named: iconImage)
+    if let iconImage = iconImage {
+      weatherIconImageView.image = UIImage(named: iconImage)
+    }
     temperatureLabel.text = temperature
   }
   

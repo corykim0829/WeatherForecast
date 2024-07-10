@@ -54,11 +54,19 @@ final class MainCityWeatherView: UIView {
     configure()
   }
   
-  func update(cityTitle: String, currentTemperature: Double, weather: String, minTemp: Double, maxTemp: Double) {
-    cityTitleLabel.text = cityTitle
-    currentTemperatureLabel.text = "\(currentTemperature)"
-    weatherLabel.text = weather
-    temperatureLabel.text = "최고: \(maxTemp)º  |  최저: \(minTemp)º"
+  func update(weatherResponse: WeatherResponse) {
+    guard let currentWeather = weatherResponse.weathers.first,
+          let weatherData = currentWeather.weatherDatas.first 
+    else {
+      return
+    }
+    
+    cityTitleLabel.text = weatherResponse.city.name
+    currentTemperatureLabel.text = "\(Int(round(currentWeather.mainData.temp)))º"
+    weatherLabel.text = weatherData.main
+    let tempMax = Int(round(currentWeather.mainData.tempMax))
+    let tempMin = Int(round(currentWeather.mainData.tempMin))
+    temperatureLabel.text = "최고: \(tempMax)º  |  최저: \(tempMin)º"
   }
   
 }
