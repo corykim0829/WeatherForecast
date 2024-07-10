@@ -1,5 +1,5 @@
 //
-//  WeatherByHoursItemView.swift
+//  MainWeatherByHoursItemView.swift
 //  WeatherForecast
 //
 //  Created by Cory Kim on 7/9/24.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class WeatherByHoursItemView: UIView {
+final class MainWeatherByHoursItemView: UIView {
   
   enum Metric {
     static let width: CGFloat = 60
@@ -65,7 +65,7 @@ final class WeatherByHoursItemView: UIView {
   
 }
 
-extension WeatherByHoursItemView {
+extension MainWeatherByHoursItemView {
   private func configure() {
     layout()
   }

@@ -22,7 +22,7 @@ final class MainViewController: UIViewController {
     return imageView
   }()
   let cityWeatherView = MainCityWeatherView()
-  let weatherByHoursView = WeatherByHoursView()
+  let weatherByHoursView = MainWeatherByHoursView()
   let weatherForFiveDaysView = MainWeatherForFiveDaysView()
   
   let viewModel = MainViewModel()
