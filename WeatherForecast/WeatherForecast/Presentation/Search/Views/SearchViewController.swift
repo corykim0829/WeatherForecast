@@ -71,6 +71,14 @@ final class SearchViewController: UIViewController {
           cell.update(city: city)
         }
         .disposed(by: disposeBag)
+    
+    searchBarView
+      .searchTextField
+      .rx
+      .text
+      .orEmpty
+      .bind(onNext: viewModel.searchKeyword.accept(_:))
+      .disposed(by: disposeBag)
   }
   
   private func configureTableViewSelection() {
