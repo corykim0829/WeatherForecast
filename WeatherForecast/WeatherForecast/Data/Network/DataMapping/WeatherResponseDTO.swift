@@ -58,7 +58,7 @@ extension WeatherResponseDTO {
     let population, timezone, sunrise, sunset: Int
     
     func toDomain() -> City {
-      return City(name: name, coord: coord)
+      return City(name: name, country: country, coord: coord)
     }
   }
 }

@@ -21,6 +21,8 @@ final class MainViewController: UIViewController {
     imageView.image = UIImage(named: "sunny")
     return imageView
   }()
+  
+  let searchBarView = MainSearchBarView()
   let cityWeatherView = MainCityWeatherView()
   let weatherByHoursView = MainWeatherByHoursView()
   let weatherForFiveDaysView = MainWeatherForFiveDaysView()
@@ -33,8 +35,7 @@ final class MainViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    view.backgroundColor = .white
-    layout()
+    configure()
     bindViewModel()
   }
   
@@ -62,11 +63,35 @@ final class MainViewController: UIViewController {
 
 }
 
+// MARK: - MainSearchBarViewDelegate
+
+extension MainViewController: MainSearchBarViewDelegate {
+  func searchBarButtonDidTap() {
+    let searchViewController = SearchViewController()
+    searchViewController.modalPresentationStyle = .overCurrentContext
+    present(searchViewController, animated: false)
+  }
+  
+}
+
+// MARK: - Configuration
+
 extension MainViewController {
+  
+  private func configure() {
+    view.backgroundColor = .white
+    configureDelegate()
+    layout()
+  }
+  
+  private func configureDelegate() {
+    searchBarView.delegate = self
+  }
   
   private func layout() {
     layoutBackgroundImageView()
     layoutScrollView()
+    layoutSearchBarView()
     layoutCityWeatherView()
     layoutWeatherByHoursView()
     layoutWeatherForFiveDaysView()
@@ -92,10 +117,18 @@ extension MainViewController {
     
   }
   
+  private func layoutSearchBarView() {
+    scrollView.addSubview(searchBarView)
+    searchBarView.snp.makeConstraints {
+      $0.top.leading.trailing.centerX.equalToSuperview()
+    }
+  }
+  
   private func layoutCityWeatherView() {
     scrollView.addSubview(cityWeatherView)
     cityWeatherView.snp.makeConstraints {
-      $0.top.leading.trailing.centerX.equalToSuperview()
+      $0.top.equalTo(searchBarView.snp.bottom)
+      $0.leading.trailing.equalToSuperview()
     }
   }
   

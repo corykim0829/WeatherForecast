@@ -26,7 +26,7 @@ final class MainMapView: UIView {
     return view
   }()
   
-  private let defaultCity = City(name: "Asan", coord: .init(lat: 36.783611, lon: 127.004173))
+  private let defaultCity = City(name: "Asan", country: "KR", coord: .init(lat: 36.783611, lon: 127.004173))
   
   lazy var mapView: MKMapView = {
     let mapView = MKMapView()
