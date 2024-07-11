@@ -11,7 +11,7 @@ import RxRelay
 
 final class MainViewModel {
   
-  // use case
+  let fetchWeatherUseCase: FetchWeatherUseCase
   
   var weatherResponse = BehaviorRelay<WeatherResponse?>(value: nil)
   var weathersForFiveDays = PublishRelay<[WeatherByDay]>()
@@ -20,12 +20,13 @@ final class MainViewModel {
   
   let disposeBag = DisposeBag()
   
-  init() {
-    OpenWeatherAPI().fetchWeather(lat: defaultCity.coord.lat, lon: defaultCity.coord.lon) { result in
+  init(fetchWeatherUseCase: FetchWeatherUseCase = FetchWeatherUseCase()) {
+    self.fetchWeatherUseCase = fetchWeatherUseCase
+    
+    self.fetchWeatherUseCase.fetchWeather(city: defaultCity) { result in
       switch result {
       case .success(let response):
-        let weatherResponse = response.toDomain()
-        self.weatherResponse.accept(weatherResponse)
+        self.weatherResponse.accept(response)
       case .failure(let error):
         print(error)
       }
@@ -42,11 +43,10 @@ final class MainViewModel {
   }
   
   func fetchWeather(city: City) {
-    OpenWeatherAPI().fetchWeather(lat: city.coord.lat, lon: city.coord.lon) { result in
+    fetchWeatherUseCase.fetchWeather(city: city) { result in
       switch result {
       case .success(let response):
-        let weatherResponse = response.toDomain()
-        self.weatherResponse.accept(weatherResponse)
+        self.weatherResponse.accept(response)
       case .failure(let error):
         print(error)
       }
