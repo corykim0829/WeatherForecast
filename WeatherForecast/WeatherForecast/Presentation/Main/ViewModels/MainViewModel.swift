@@ -39,7 +39,8 @@ final class MainViewModel {
     }
     
     weatherResponse
-      .bind { weatherResponse in
+      .share(replay: 1)
+      .subscribe { weatherResponse in
         if let weatherResponse = weatherResponse {
           let weatherByHourList = self.weatherByHourList(response: weatherResponse)
           self.weathersByHour.accept(weatherByHourList)
@@ -48,7 +49,8 @@ final class MainViewModel {
       .disposed(by: disposeBag)
     
     weatherResponse
-      .bind { weatherResponse in
+      .share(replay: 1)
+      .subscribe { weatherResponse in
         if let weatherResponse = weatherResponse {
           let weatherByDayList = self.weatherByDayList(response: weatherResponse)
           self.weathersForFiveDays.accept(weatherByDayList)
