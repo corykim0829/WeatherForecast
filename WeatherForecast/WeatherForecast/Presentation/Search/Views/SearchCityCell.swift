@@ -10,6 +10,13 @@ import SnapKit
 
 final class SearchCityCell: UITableViewCell {
   
+  enum Metric {
+    enum StackView {
+      static let topBottom: CGFloat = 8
+      static let leading: CGFloat = 12
+    }
+  }
+  
   lazy var cityLabel: UILabel = {
     let label = UILabel()
     label.font = .systemFont(ofSize: 16, weight: .semibold)
@@ -60,8 +67,8 @@ extension SearchCityCell {
   private func layout() {
     contentView.addSubview(stackView)
     stackView.snp.makeConstraints {
-      $0.top.bottom.equalToSuperview().inset(8)
-      $0.leading.equalToSuperview().inset(12)
+      $0.top.bottom.equalToSuperview().inset(Metric.StackView.topBottom)
+      $0.leading.equalToSuperview().inset(Metric.StackView.leading)
     }
     stackView.addArrangedSubview(cityLabel)
     stackView.addArrangedSubview(countryLabel)

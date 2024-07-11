@@ -18,6 +18,14 @@ protocol SearchViewControllerDelegate: AnyObject {
 
 final class SearchViewController: UIViewController {
   
+  enum Metric {
+    enum DismissButton {
+      static let side: CGFloat = 36
+      static let centerYOffset: CGFloat = 4
+      static let trailing: CGFloat = 16
+    }
+  }
+  
   lazy var backgroundBlurView: UIVisualEffectView = {
     let effect = UIBlurEffect(style: .light)
     let view = UIVisualEffectView(effect: effect)
@@ -112,10 +120,10 @@ extension SearchViewController {
     }
     view.addSubview(dismissButton)
     dismissButton.snp.makeConstraints {
-      $0.centerY.equalTo(searchBarView).offset(4)
+      $0.centerY.equalTo(searchBarView).offset(Metric.DismissButton.centerYOffset)
       $0.leading.equalTo(searchBarView.snp.trailing)
-      $0.trailing.equalToSuperview().inset(16)
-      $0.width.height.equalTo(36)
+      $0.trailing.equalToSuperview().inset(Metric.DismissButton.trailing)
+      $0.width.height.equalTo(Metric.DismissButton.side)
     }
     view.addSubview(cityListTableView)
     cityListTableView.snp.makeConstraints {
