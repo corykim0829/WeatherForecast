@@ -37,9 +37,20 @@ final class MainViewController: UIViewController {
     
     configure()
     bindViewModel()
+    updateFetchingState()
   }
   
   private func bindViewModel() {
+    
+    viewModel
+      .isFetching
+      .observe(on: MainScheduler.instance)
+      .bind { isFetching in
+        if isFetching {
+          self.updateFetchingState()
+        }
+      }
+      .disposed(by: disposeBag)
     
     viewModel
       .weatherResponse
@@ -52,6 +63,7 @@ final class MainViewController: UIViewController {
         self.cityWeatherView.update(weatherResponse: response)
         self.weatherByHoursView.update(weatherResponse: response)
         self.mapView.update(city: response.city)
+        self.showSubviews()
       }
       .disposed(by: disposeBag)
     
@@ -60,6 +72,33 @@ final class MainViewController: UIViewController {
       .asDriver(onErrorJustReturn: [])
       .drive(onNext: weatherForFiveDaysView.update)
       .disposed(by: disposeBag)
+  }
+  
+  private func updateFetchingState() {
+    let subviews: [UIView] = [
+      cityWeatherView,
+      weatherByHoursView,
+      weatherForFiveDaysView,
+      mapView
+    ]
+    subviews.forEach { subview in
+      subview.alpha = 0
+    }
+  }
+  
+  private func showSubviews() {
+    let subviews: [UIView] = [
+      cityWeatherView,
+      weatherByHoursView,
+      weatherForFiveDaysView,
+      mapView
+    ]
+    subviews.forEach { subview in
+      UIView.animate(withDuration: 0.3) {
+        subview.alpha = 1
+      }
+    }
+    
   }
 
 }
