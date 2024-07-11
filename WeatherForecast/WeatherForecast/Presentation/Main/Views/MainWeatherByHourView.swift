@@ -15,6 +15,19 @@ final class MainWeatherByHourView: UIView {
       static let topBottom: CGFloat = 8
       static let leadingTrailing: CGFloat = 16
     }
+    enum TitleLabel {
+      static let top: CGFloat = 12
+      static let leading: CGFloat = 12
+    }
+    enum SeparatorView {
+      static let top: CGFloat = 8
+      static let leadingTrailing: CGFloat = 12
+      static let height: CGFloat = 1
+    }
+    enum WeatherScrollView {
+      static let top: CGFloat = 8
+      static let bottom: CGFloat = 12
+    }
   }
   
   lazy var containerView: UIView = {
@@ -110,20 +123,20 @@ extension MainWeatherByHourView {
     }
     containerView.addSubview(titleLabel)
     titleLabel.snp.makeConstraints {
-      $0.top.equalToSuperview().inset(12)
-      $0.leading.equalToSuperview().inset(12)
+      $0.top.equalToSuperview().inset(Metric.TitleLabel.top)
+      $0.leading.equalToSuperview().inset(Metric.TitleLabel.leading)
     }
     containerView.addSubview(separatorView)
     separatorView.snp.makeConstraints {
-      $0.top.equalTo(titleLabel.snp.bottom).offset(8)
-      $0.leading.trailing.equalToSuperview().inset(12)
-      $0.height.equalTo(1)
+      $0.top.equalTo(titleLabel.snp.bottom).offset(Metric.SeparatorView.top)
+      $0.leading.trailing.equalToSuperview().inset(Metric.SeparatorView.leadingTrailing)
+      $0.height.equalTo(Metric.SeparatorView.height)
     }
     containerView.addSubview(weathersScrollView)
     weathersScrollView.snp.makeConstraints {
-      $0.top.equalTo(separatorView.snp.bottom).offset(8)
+      $0.top.equalTo(separatorView.snp.bottom).offset(Metric.WeatherScrollView.top)
       $0.leading.trailing.equalToSuperview()
-      $0.bottom.equalToSuperview().inset(12)
+      $0.bottom.equalToSuperview().inset(Metric.WeatherScrollView.bottom)
     }
     
     weathersScrollView.addSubview(weathersStackView)

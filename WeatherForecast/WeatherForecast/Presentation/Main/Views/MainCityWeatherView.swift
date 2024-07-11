@@ -10,6 +10,22 @@ import SnapKit
 
 final class MainCityWeatherView: UIView {
   
+  enum Metric {
+    enum CityTitleLabel {
+      static let top: CGFloat = 24
+    }
+    enum CurrentTemperatureLabel {
+      static let top: CGFloat = 4
+    }
+    enum WeatherLabel {
+      static let top: CGFloat = 8
+    }
+    enum TemperatureLabel {
+      static let top: CGFloat = 4
+      static let bottom: CGFloat = 16
+    }
+  }
+  
   lazy var cityTitleLabel: UILabel = {
     let label = UILabel()
     label.font = .systemFont(ofSize: 40, weight: .regular)
@@ -79,26 +95,26 @@ extension MainCityWeatherView {
   private func layout() {
     addSubview(cityTitleLabel)
     cityTitleLabel.snp.makeConstraints {
-      $0.top.equalToSuperview().inset(24)
+      $0.top.equalToSuperview().inset(Metric.CityTitleLabel.top)
       $0.centerX.equalToSuperview()
     }
     addSubview(currentTemperatureLabel)
     currentTemperatureLabel.snp.makeConstraints {
-      $0.top.equalTo(cityTitleLabel.snp.bottom).offset(4)
+      $0.top.equalTo(cityTitleLabel.snp.bottom).offset(Metric.CurrentTemperatureLabel.top)
       $0.centerX.equalToSuperview()
     }
     
     addSubview(weatherLabel)
     weatherLabel.snp.makeConstraints {
-      $0.top.equalTo(currentTemperatureLabel.snp.bottom).offset(8)
+      $0.top.equalTo(currentTemperatureLabel.snp.bottom).offset(Metric.WeatherLabel.top)
       $0.centerX.equalToSuperview()
     }
     
     addSubview(temperatureLabel)
     temperatureLabel.snp.makeConstraints {
-      $0.top.equalTo(weatherLabel.snp.bottom).offset(4)
+      $0.top.equalTo(weatherLabel.snp.bottom).offset(Metric.TemperatureLabel.top)
       $0.centerX.equalToSuperview()
-      $0.bottom.equalToSuperview().inset(16)
+      $0.bottom.equalToSuperview().inset(Metric.TemperatureLabel.bottom)
     }
     
   }

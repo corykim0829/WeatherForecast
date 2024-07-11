@@ -10,6 +10,15 @@ import SnapKit
 
 final class MainOtherDataItemView: UIView {
   
+  enum Metric {
+    enum TitleLabel {
+      static let topLeading: CGFloat = 12
+    }
+    enum DataStackView {
+      static let bottomTrailing: CGFloat = 12
+    }
+  }
+  
   lazy var backgroundBlurView: UIVisualEffectView = {
     let effect = UIBlurEffect(style: .dark)
     let view = UIVisualEffectView(effect: effect)
@@ -83,12 +92,12 @@ extension MainOtherDataItemView {
     
     addSubview(titleLabel)
     titleLabel.snp.makeConstraints {
-      $0.top.leading.equalToSuperview().inset(12)
+      $0.top.leading.equalToSuperview().inset(Metric.TitleLabel.topLeading)
     }
     
     addSubview(dataStackView)
     dataStackView.snp.makeConstraints {
-      $0.leading.bottom.equalToSuperview().inset(12)
+      $0.leading.bottom.equalToSuperview().inset(Metric.DataStackView.bottomTrailing)
     }
     
     dataStackView.addArrangedSubview(mainDataLabel)

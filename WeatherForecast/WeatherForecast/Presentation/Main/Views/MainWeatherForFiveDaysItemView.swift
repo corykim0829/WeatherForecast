@@ -10,6 +10,13 @@ import SnapKit
 
 final class MainWeatherForFiveDaysItemView: UIView {
   
+  enum Metric {
+    enum WeatherIconImageView {
+      static let leading: CGFloat = 80
+      static let side: CGFloat = 36
+    }
+  }
+  
   lazy var dayLabel: UILabel = {
     let label = UILabel()
     label.font = .systemFont(ofSize: 14, weight: .semibold)
@@ -64,9 +71,9 @@ extension MainWeatherForFiveDaysItemView {
     
     addSubview(weatherIconImageView)
     weatherIconImageView.snp.makeConstraints {
-      $0.leading.equalToSuperview().inset(80)
+      $0.leading.equalToSuperview().inset(Metric.WeatherIconImageView.leading)
       $0.top.bottom.equalToSuperview()
-      $0.width.height.equalTo(36)
+      $0.width.height.equalTo(Metric.WeatherIconImageView.side)
     }
     
     addSubview(temperatureLabel)

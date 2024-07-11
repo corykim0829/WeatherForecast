@@ -16,6 +16,9 @@ final class MainMapView: UIView {
       static let topBottom: CGFloat = 8
       static let leadingTrailing: CGFloat = 16
     }
+    enum MapView {
+      static let edgePadding: CGFloat = 12
+    }
   }
   
   lazy var containerView: UIView = {
@@ -104,7 +107,7 @@ extension MainMapView {
     
     containerView.addSubview(mapView)
     mapView.snp.makeConstraints {
-      $0.edges.equalToSuperview().inset(12)
+      $0.edges.equalToSuperview().inset(Metric.MapView.edgePadding)
       $0.height.equalTo(mapView.snp.width)
     }
   }
