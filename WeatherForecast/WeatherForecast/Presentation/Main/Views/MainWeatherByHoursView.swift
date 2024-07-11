@@ -73,13 +73,9 @@ final class MainWeatherByHoursView: UIView {
     configure()
   }
   
-  func update(weatherResponse: WeatherResponse) {
+  func update(weathers: [Weather]) {
     removeAllArrangedSubview()
-    weatherResponse
-      .weathers
-      .filter {
-        $0.date <= Date().addingTimeInterval(60 * 60 * 48)
-      }
+    weathers
       .forEach {
         let itemView = MainWeatherByHoursItemView()
         itemView.update(

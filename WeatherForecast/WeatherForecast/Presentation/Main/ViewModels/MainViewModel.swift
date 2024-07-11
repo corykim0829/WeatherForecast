@@ -14,6 +14,7 @@ final class MainViewModel {
   let fetchWeatherUseCase: FetchWeatherUseCase
   
   var weatherResponse = BehaviorRelay<WeatherResponse?>(value: nil)
+  var weathersByHour = PublishRelay<[Weather]>()
   var weathersForFiveDays = PublishRelay<[WeatherByDay]>()
   var isFetching = BehaviorRelay<Bool>(value: false)
   var errorOccurred = PublishRelay<Error>()
@@ -40,6 +41,15 @@ final class MainViewModel {
     weatherResponse
       .bind { weatherResponse in
         if let weatherResponse = weatherResponse {
+          let weatherByHourList = self.weatherByHourList(response: weatherResponse)
+          self.weathersByHour.accept(weatherByHourList)
+        }
+      }
+      .disposed(by: disposeBag)
+    
+    weatherResponse
+      .bind { weatherResponse in
+        if let weatherResponse = weatherResponse {
           let weatherByDayList = self.weatherByDayList(response: weatherResponse)
           self.weathersForFiveDays.accept(weatherByDayList)
         }
@@ -59,6 +69,14 @@ final class MainViewModel {
         self.errorOccurred.accept(error)
       }
     }
+  }
+  
+  private func weatherByHourList(response: WeatherResponse) -> [Weather] {
+    return response
+      .weathers
+      .filter {
+        $0.date <= Date().addingTimeInterval(60 * 60 * 24 * 2)
+      }
   }
   
   private func weatherByDayList(response: WeatherResponse) -> [WeatherByDay] {

@@ -69,11 +69,16 @@ final class MainViewController: UIViewController {
           self.backgroundImageView.image = UIImage(named: backgroundImageName.lowercased())
         }
         self.cityWeatherView.update(weatherResponse: response)
-        self.weatherByHoursView.update(weatherResponse: response)
         self.mapView.update(city: response.city)
         
         self.showSubviews()
       }
+      .disposed(by: disposeBag)
+    
+    viewModel
+      .weathersByHour
+      .asDriver(onErrorJustReturn: [])
+      .drive(onNext: weatherByHoursView.update)
       .disposed(by: disposeBag)
     
     viewModel
