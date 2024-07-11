@@ -27,6 +27,7 @@ final class MainViewController: UIViewController {
   let weatherByHoursView = MainWeatherByHoursView()
   let weatherForFiveDaysView = MainWeatherForFiveDaysView()
   let mapView = MainMapView()
+  let loadingView = MainLoadingView()
   
   let viewModel = MainViewModel()
   
@@ -37,7 +38,6 @@ final class MainViewController: UIViewController {
     
     configure()
     bindViewModel()
-    updateFetchingState()
   }
   
   private func bindViewModel() {
@@ -46,6 +46,7 @@ final class MainViewController: UIViewController {
       .isFetching
       .observe(on: MainScheduler.instance)
       .bind { isFetching in
+        self.updateLoadingView(isHidden: !isFetching)
         if isFetching {
           self.updateFetchingState()
         }
@@ -63,6 +64,7 @@ final class MainViewController: UIViewController {
         self.cityWeatherView.update(weatherResponse: response)
         self.weatherByHoursView.update(weatherResponse: response)
         self.mapView.update(city: response.city)
+        
         self.showSubviews()
       }
       .disposed(by: disposeBag)
@@ -90,6 +92,10 @@ final class MainViewController: UIViewController {
     subviews.forEach { subview in
       subview.alpha = 0
     }
+  }
+  
+  private func updateLoadingView(isHidden: Bool) {
+    loadingView.isHidden = isHidden
   }
   
   private func showSubviews() {
@@ -161,6 +167,8 @@ extension MainViewController {
     layoutWeatherByHoursView()
     layoutWeatherForFiveDaysView()
     layoutMapView()
+    
+    layoutLoadingView()
   }
   
   private func layoutBackgroundImageView() {
@@ -218,6 +226,13 @@ extension MainViewController {
     mapView.snp.makeConstraints {
       $0.top.equalTo(weatherForFiveDaysView.snp.bottom)
       $0.leading.bottom.trailing.equalToSuperview()
+    }
+  }
+  
+  private func layoutLoadingView() {
+    view.addSubview(loadingView)
+    loadingView.snp.makeConstraints {
+      $0.edges.equalToSuperview()
     }
   }
   
