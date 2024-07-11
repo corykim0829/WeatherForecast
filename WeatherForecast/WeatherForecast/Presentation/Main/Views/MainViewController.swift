@@ -72,6 +72,12 @@ final class MainViewController: UIViewController {
       .asDriver(onErrorJustReturn: [])
       .drive(onNext: weatherForFiveDaysView.update)
       .disposed(by: disposeBag)
+    
+    viewModel
+      .errorOccurred
+      .observe(on: MainScheduler.instance)
+      .bind(onNext: self.showErrorAlertController)
+      .disposed(by: disposeBag)
   }
   
   private func updateFetchingState() {
@@ -99,6 +105,16 @@ final class MainViewController: UIViewController {
       }
     }
     
+  }
+  
+  private func showErrorAlertController(error: Error) {
+    let alertController = UIAlertController(
+      title: "에러",
+      message: "\(error.localizedDescription)\n잠시 후 다시 시도해주세요",
+      preferredStyle: .alert)
+    let action = UIAlertAction(title: "확인", style: .default)
+    alertController.addAction(action)
+    present(alertController, animated: true)
   }
 
 }

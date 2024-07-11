@@ -16,6 +16,7 @@ final class MainViewModel {
   var weatherResponse = BehaviorRelay<WeatherResponse?>(value: nil)
   var weathersForFiveDays = PublishRelay<[WeatherByDay]>()
   var isFetching = BehaviorRelay<Bool>(value: false)
+  var errorOccurred = PublishRelay<Error>()
   
   private let defaultCity = City(name: "Asan", country: "KR", coord: .init(lat: 36.783611, lon: 127.004173))
   
@@ -32,7 +33,7 @@ final class MainViewModel {
         self.weatherResponse.accept(response)
       case .failure(let error):
         self.isFetching.accept(false)
-        print(error)
+        self.errorOccurred.accept(error)
       }
     }
     
@@ -55,7 +56,7 @@ final class MainViewModel {
         self.weatherResponse.accept(response)
       case .failure(let error):
         self.isFetching.accept(false)
-        print(error)
+        self.errorOccurred.accept(error)
       }
     }
   }
