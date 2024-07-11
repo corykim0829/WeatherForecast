@@ -21,7 +21,13 @@ final class MainWeatherForFiveDaysView: UIView {
     let view = UIView()
     view.layer.cornerRadius = 12
     view.clipsToBounds = true
-    view.backgroundColor = .darkGray
+    view.backgroundColor = .clear
+    return view
+  }()
+  
+  lazy var backgroundBlurView: UIVisualEffectView = {
+    let effect = UIBlurEffect(style: .dark)
+    let view = UIVisualEffectView(effect: effect)
     return view
   }()
   
@@ -100,6 +106,10 @@ extension MainWeatherForFiveDaysView {
     containerView.snp.makeConstraints {
       $0.top.bottom.equalToSuperview().inset(Metric.ContainerView.topBottom)
       $0.leading.trailing.equalToSuperview().inset(Metric.ContainerView.leadingTrailing)
+    }
+    containerView.addSubview(backgroundBlurView)
+    backgroundBlurView.snp.makeConstraints {
+      $0.edges.equalToSuperview()
     }
     containerView.addSubview(titleLabel)
     titleLabel.snp.makeConstraints {

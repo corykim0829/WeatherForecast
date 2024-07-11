@@ -18,7 +18,7 @@ protocol SearchViewControllerDelegate: AnyObject {
 
 final class SearchViewController: UIViewController {
   
-  let backgroundBlurView: UIVisualEffectView = {
+  lazy var backgroundBlurView: UIVisualEffectView = {
     let effect = UIBlurEffect(style: .light)
     let view = UIVisualEffectView(effect: effect)
     return view
