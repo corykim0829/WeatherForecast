@@ -27,6 +27,13 @@ final class MainViewController: UIViewController {
   let weatherByHoursView = MainWeatherByHoursView()
   let weatherForFiveDaysView = MainWeatherForFiveDaysView()
   let mapView = MainMapView()
+  
+  lazy var contentStackView: UIStackView = {
+    let stackView = UIStackView()
+    stackView.axis = .vertical
+    return stackView
+  }()
+  
   let loadingView = MainLoadingView()
   
   let viewModel = MainViewModel()
@@ -162,12 +169,7 @@ extension MainViewController {
   private func layout() {
     layoutBackgroundImageView()
     layoutScrollView()
-    layoutSearchBarView()
-    layoutCityWeatherView()
-    layoutWeatherByHoursView()
-    layoutWeatherForFiveDaysView()
-    layoutMapView()
-    
+    layoutContentStackView()
     layoutLoadingView()
   }
   
@@ -190,42 +192,20 @@ extension MainViewController {
     
   }
   
-  private func layoutSearchBarView() {
-    scrollView.addSubview(searchBarView)
-    searchBarView.snp.makeConstraints {
-      $0.top.leading.trailing.centerX.equalToSuperview()
+  private func layoutContentStackView() {
+    scrollView.addSubview(contentStackView)
+    contentStackView.snp.makeConstraints {
+      $0.top.leading.bottom.trailing.centerX.equalToSuperview()
     }
-  }
-  
-  private func layoutCityWeatherView() {
-    scrollView.addSubview(cityWeatherView)
-    cityWeatherView.snp.makeConstraints {
-      $0.top.equalTo(searchBarView.snp.bottom)
-      $0.leading.trailing.equalToSuperview()
-    }
-  }
-  
-  private func layoutWeatherByHoursView() {
-    scrollView.addSubview(weatherByHoursView)
-    weatherByHoursView.snp.makeConstraints {
-      $0.top.equalTo(cityWeatherView.snp.bottom)
-      $0.leading.trailing.equalToSuperview()
-    }
-  }
-  
-  private func layoutWeatherForFiveDaysView() {
-    scrollView.addSubview(weatherForFiveDaysView)
-    weatherForFiveDaysView.snp.makeConstraints {
-      $0.top.equalTo(weatherByHoursView.snp.bottom)
-      $0.leading.trailing.equalToSuperview()
-    }
-  }
-  
-  private func layoutMapView() {
-    scrollView.addSubview(mapView)
-    mapView.snp.makeConstraints {
-      $0.top.equalTo(weatherForFiveDaysView.snp.bottom)
-      $0.leading.bottom.trailing.equalToSuperview()
+    
+    [
+      searchBarView,
+      cityWeatherView,
+      weatherByHoursView,
+      weatherForFiveDaysView,
+      mapView
+    ].forEach {
+      contentStackView.addArrangedSubview($0)
     }
   }
   
