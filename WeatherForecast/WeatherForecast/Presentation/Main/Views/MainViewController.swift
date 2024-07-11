@@ -51,6 +51,7 @@ final class MainViewController: UIViewController {
         }
         self.cityWeatherView.update(weatherResponse: response)
         self.weatherByHoursView.update(weatherResponse: response)
+        self.mapView.update(city: response.city)
       }
       .disposed(by: disposeBag)
     
@@ -69,9 +70,18 @@ extension MainViewController: MainSearchBarViewDelegate {
   func searchBarButtonDidTap() {
     let searchViewController = SearchViewController()
     searchViewController.modalPresentationStyle = .overCurrentContext
+    searchViewController.delegate = self
     present(searchViewController, animated: false)
   }
   
+}
+
+// MARK: - SearchViewControllerDelegate
+
+extension MainViewController: SearchViewControllerDelegate {
+  func searchViewController(_ viewController: SearchViewController, didSelectCellItem item: City) {
+    viewModel.fetchWeather(city: item)
+  }
 }
 
 // MARK: - Configuration

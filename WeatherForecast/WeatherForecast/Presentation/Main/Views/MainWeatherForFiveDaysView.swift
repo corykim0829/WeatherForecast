@@ -59,6 +59,7 @@ final class MainWeatherForFiveDaysView: UIView {
   }
   
   func update(weathersByDay: [WeatherByDay]) {
+    removeAllArrangedSubviews()
     let sortedWeathers = weathersByDay.sorted {
       $0.date < $1.date
     }
@@ -80,6 +81,10 @@ final class MainWeatherForFiveDaysView: UIView {
       weathersStackView.addArrangedSubview(itemView)
     }
     
+  }
+  
+  private func removeAllArrangedSubviews() {
+    weathersStackView.removeAllArrangedSubviews()
   }
   
 }

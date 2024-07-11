@@ -10,6 +10,12 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
+protocol SearchViewControllerDelegate: AnyObject {
+  func searchViewController(
+    _ viewController: SearchViewController,
+    didSelectCellItem item: City)
+}
+
 final class SearchViewController: UIViewController {
   
   let backgroundBlurView: UIVisualEffectView = {
@@ -40,6 +46,8 @@ final class SearchViewController: UIViewController {
   
   let disposeBag = DisposeBag()
   
+  weak var delegate: SearchViewControllerDelegate?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -65,10 +73,22 @@ final class SearchViewController: UIViewController {
         .disposed(by: disposeBag)
   }
   
+  private func configureTableViewSelection() {
+    cityListTableView
+      .rx
+      .modelSelected(City.self)
+      .bind { city in
+        self.delegate?.searchViewController(self, didSelectCellItem: city)
+        self.dismiss(animated: false)
+      }
+      .disposed(by: disposeBag)
+  }
+  
 }
 
 extension SearchViewController {
   private func configure() {
+    configureTableViewSelection()
     layout()
   }
   

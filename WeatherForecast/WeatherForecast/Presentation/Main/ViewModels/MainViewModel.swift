@@ -41,6 +41,18 @@ final class MainViewModel {
       .disposed(by: disposeBag)
   }
   
+  func fetchWeather(city: City) {
+    OpenWeatherAPI().fetchWeather(lat: city.coord.lat, lon: city.coord.lon) { result in
+      switch result {
+      case .success(let response):
+        let weatherResponse = response.toDomain()
+        self.weatherResponse.accept(weatherResponse)
+      case .failure(let error):
+        print(error)
+      }
+    }
+  }
+  
   private func weatherByDayList(response: WeatherResponse) -> [WeatherByDay] {
     var weathersByDate: [String: [Weather]] = [:]
     response

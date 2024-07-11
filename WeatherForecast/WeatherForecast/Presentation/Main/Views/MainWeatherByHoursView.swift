@@ -68,6 +68,7 @@ final class MainWeatherByHoursView: UIView {
   }
   
   func update(weatherResponse: WeatherResponse) {
+    removeAllArrangedSubview()
     weatherResponse
       .weathers
       .filter {
@@ -81,6 +82,10 @@ final class MainWeatherByHoursView: UIView {
           temperature: "\(Int(round($0.mainData.temp)))º")
         weathersStackView.addArrangedSubview(itemView)
       }
+  }
+  
+  private func removeAllArrangedSubview() {
+    weathersStackView.removeAllArrangedSubviews()
   }
   
 }
