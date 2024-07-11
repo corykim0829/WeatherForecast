@@ -24,7 +24,7 @@ final class MainViewController: UIViewController {
   
   let searchBarView = MainSearchBarView()
   let cityWeatherView = MainCityWeatherView()
-  let weatherByHoursView = MainWeatherByHoursView()
+  let weatherByHourView = MainWeatherByHourView()
   let weatherForFiveDaysView = MainWeatherForFiveDaysView()
   let mapView = MainMapView()
   let otherDatasView = MainOtherDatasView()
@@ -79,7 +79,7 @@ final class MainViewController: UIViewController {
     viewModel
       .weathersByHour
       .asDriver(onErrorJustReturn: [])
-      .drive(onNext: weatherByHoursView.update)
+      .drive(onNext: weatherByHourView.update)
       .disposed(by: disposeBag)
     
     viewModel
@@ -98,7 +98,7 @@ final class MainViewController: UIViewController {
   private func updateFetchingState() {
     let subviews: [UIView] = [
       cityWeatherView,
-      weatherByHoursView,
+      weatherByHourView,
       weatherForFiveDaysView,
       mapView,
       otherDatasView
@@ -115,7 +115,7 @@ final class MainViewController: UIViewController {
   private func showSubviews() {
     let subviews: [UIView] = [
       cityWeatherView,
-      weatherByHoursView,
+      weatherByHourView,
       weatherForFiveDaysView,
       mapView,
       otherDatasView
@@ -209,7 +209,7 @@ extension MainViewController {
     [
       searchBarView,
       cityWeatherView,
-      weatherByHoursView,
+      weatherByHourView,
       weatherForFiveDaysView,
       mapView,
       otherDatasView

@@ -1,5 +1,5 @@
 //
-//  MainWeatherByHoursView.swift
+//  MainWeatherByHourView.swift
 //  WeatherForecast
 //
 //  Created by Cory Kim on 7/9/24.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class MainWeatherByHoursView: UIView {
+final class MainWeatherByHourView: UIView {
   
   enum Metric {
     enum ContainerView {
@@ -92,7 +92,7 @@ final class MainWeatherByHoursView: UIView {
   
 }
 
-extension MainWeatherByHoursView {
+extension MainWeatherByHourView {
   private func configure() {
     backgroundColor = .clear
     layout()
