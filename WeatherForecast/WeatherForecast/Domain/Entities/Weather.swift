@@ -30,4 +30,5 @@ struct WeatherClouds {
 
 struct WeatherWind {
   let speed: Double
+  let gust: Double
 }

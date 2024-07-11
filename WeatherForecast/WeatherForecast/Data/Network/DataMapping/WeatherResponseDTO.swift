@@ -118,7 +118,7 @@ extension WeatherResponseDTO.WeatherDTO {
     let gust: Double
     
     func toDomain() -> WeatherWind {
-      return .init(speed: speed)
+      return .init(speed: speed, gust: gust)
     }
   }
   

@@ -27,6 +27,7 @@ final class MainViewController: UIViewController {
   let weatherByHoursView = MainWeatherByHoursView()
   let weatherForFiveDaysView = MainWeatherForFiveDaysView()
   let mapView = MainMapView()
+  let otherDatasView = MainOtherDatasView()
   
   lazy var contentStackView: UIStackView = {
     let stackView = UIStackView()
@@ -70,7 +71,7 @@ final class MainViewController: UIViewController {
         }
         self.cityWeatherView.update(weatherResponse: response)
         self.mapView.update(city: response.city)
-        
+        self.otherDatasView.update(weatherResponse: response)
         self.showSubviews()
       }
       .disposed(by: disposeBag)
@@ -99,7 +100,8 @@ final class MainViewController: UIViewController {
       cityWeatherView,
       weatherByHoursView,
       weatherForFiveDaysView,
-      mapView
+      mapView,
+      otherDatasView
     ]
     subviews.forEach { subview in
       subview.alpha = 0
@@ -115,7 +117,8 @@ final class MainViewController: UIViewController {
       cityWeatherView,
       weatherByHoursView,
       weatherForFiveDaysView,
-      mapView
+      mapView,
+      otherDatasView
     ]
     subviews.forEach { subview in
       UIView.animate(withDuration: 0.3) {
@@ -208,7 +211,8 @@ extension MainViewController {
       cityWeatherView,
       weatherByHoursView,
       weatherForFiveDaysView,
-      mapView
+      mapView,
+      otherDatasView
     ].forEach {
       contentStackView.addArrangedSubview($0)
     }
