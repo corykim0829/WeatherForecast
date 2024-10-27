@@ -90,18 +90,6 @@ final class SearchViewController: UIViewController {
       .bind(onNext: viewModel.searchKeyword.accept(_:))
       .disposed(by: disposeBag)
   }
-	
-	private func configureCityListCollectionViewDataSource() {
-		let cellRegistration = UICollectionView.CellRegistration<SearchCityCell, City> { cell, indexPath, itemIdentifier in
-			cell.update(city: itemIdentifier)
-		}
-		
-		dataSource = UICollectionViewDiffableDataSource<Section, City>(
-			collectionView: cityListCollectionView,
-			cellProvider: { collectionView, indexPath, itemIdentifier in
-				return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
-			})
-	}
   
 }
 
@@ -121,6 +109,18 @@ extension SearchViewController {
 	private func configureCityListCollectionView() {
 		let cityListCollectionViewLayout = createLayout()
 		cityListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: cityListCollectionViewLayout)
+	}
+	
+	private func configureCityListCollectionViewDataSource() {
+		let cellRegistration = UICollectionView.CellRegistration<SearchCityCell, City> { cell, indexPath, itemIdentifier in
+			cell.update(city: itemIdentifier)
+		}
+		
+		dataSource = UICollectionViewDiffableDataSource<Section, City>(
+			collectionView: cityListCollectionView,
+			cellProvider: { collectionView, indexPath, itemIdentifier in
+				return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+			})
 	}
   
   private func layout() {
