@@ -109,6 +109,7 @@ extension SearchViewController {
 	private func configureCityListCollectionView() {
 		let cityListCollectionViewLayout = createLayout()
 		cityListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: cityListCollectionViewLayout)
+		cityListCollectionView.delegate = self
 	}
 	
 	private func configureCityListCollectionViewDataSource() {
@@ -147,4 +148,12 @@ extension SearchViewController {
     }
   }
   
+}
+
+extension SearchViewController: UICollectionViewDelegate {
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		let city = viewModel.cities.value[indexPath.item]
+		delegate?.searchViewController(self, didSelectCellItem: city)
+		dismiss(animated: true)
+	}
 }
