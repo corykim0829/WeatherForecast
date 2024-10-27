@@ -17,6 +17,10 @@ protocol SearchViewControllerDelegate: AnyObject {
 }
 
 final class SearchViewController: UIViewController {
+	
+	enum Section {
+		case main
+	}
   
   enum Metric {
     enum DismissButton {
@@ -43,12 +47,9 @@ final class SearchViewController: UIViewController {
     return button
   }()
   
-  lazy var cityListTableView: UITableView = {
-    let tableView = UITableView()
-    tableView.backgroundColor = .clear
-    tableView.register(SearchCityCell.self, forCellReuseIdentifier: String(describing: SearchCityCell.self))
-    return tableView
-  }()
+	var cityListCollectionView: UICollectionView!
+	
+	var dataSource: UICollectionViewDiffableDataSource<Section, City>!
   
   let viewModel = SearchViewModel()
   
@@ -70,15 +71,16 @@ final class SearchViewController: UIViewController {
   }
   
   private func bindViewModel() {
-    viewModel
-      .cities
-      .asDriver()
-      .drive(cityListTableView.rx.items(
-        cellIdentifier: String(describing: SearchCityCell.self),
-        cellType: SearchCityCell.self)) { index, city, cell in
-          cell.update(city: city)
-        }
-        .disposed(by: disposeBag)
+		viewModel
+			.cities
+			.observe(on: MainScheduler())
+			.bind { cities in
+				var snapShot = NSDiffableDataSourceSnapshot<Section, City>()
+				snapShot.appendSections([.main])
+				snapShot.appendItems(cities)
+				self.dataSource.apply(snapShot)
+			}
+			.disposed(by: disposeBag)
     
     searchBarView
       .searchTextField
@@ -88,25 +90,38 @@ final class SearchViewController: UIViewController {
       .bind(onNext: viewModel.searchKeyword.accept(_:))
       .disposed(by: disposeBag)
   }
-  
-  private func configureTableViewSelection() {
-    cityListTableView
-      .rx
-      .modelSelected(City.self)
-      .bind { city in
-        self.delegate?.searchViewController(self, didSelectCellItem: city)
-        self.dismiss(animated: false)
-      }
-      .disposed(by: disposeBag)
-  }
+	
+	private func configureCityListCollectionViewDataSource() {
+		let cellRegistration = UICollectionView.CellRegistration<SearchCityCell, City> { cell, indexPath, itemIdentifier in
+			cell.update(city: itemIdentifier)
+		}
+		
+		dataSource = UICollectionViewDiffableDataSource<Section, City>(
+			collectionView: cityListCollectionView,
+			cellProvider: { collectionView, indexPath, itemIdentifier in
+				return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+			})
+	}
   
 }
 
 extension SearchViewController {
   private func configure() {
-    configureTableViewSelection()
+		configureCityListCollectionView()
+		configureCityListCollectionViewDataSource()
     layout()
   }
+	
+	private func createLayout() -> UICollectionViewLayout {
+		var config = UICollectionLayoutListConfiguration(appearance: .plain)
+		config.backgroundColor = .clear
+		return UICollectionViewCompositionalLayout.list(using: config)
+	}
+	
+	private func configureCityListCollectionView() {
+		let cityListCollectionViewLayout = createLayout()
+		cityListCollectionView = UICollectionView(frame: .zero, collectionViewLayout: cityListCollectionViewLayout)
+	}
   
   private func layout() {
     view.addSubview(backgroundBlurView)
@@ -125,8 +140,8 @@ extension SearchViewController {
       $0.trailing.equalToSuperview().inset(Metric.DismissButton.trailing)
       $0.width.height.equalTo(Metric.DismissButton.side)
     }
-    view.addSubview(cityListTableView)
-    cityListTableView.snp.makeConstraints {
+    view.addSubview(cityListCollectionView)
+    cityListCollectionView.snp.makeConstraints {
       $0.top.equalTo(searchBarView.snp.bottom)
       $0.leading.trailing.bottom.equalToSuperview()
     }

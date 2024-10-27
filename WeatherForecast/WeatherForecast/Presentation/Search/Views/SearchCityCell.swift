@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class SearchCityCell: UITableViewCell {
+final class SearchCityCell: UICollectionViewCell {
   
   enum Metric {
     enum StackView {
@@ -37,12 +37,12 @@ final class SearchCityCell: UITableViewCell {
     stackView.spacing = 4
     return stackView
   }()
-  
-  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-    
-    configure()
-  }
+	
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		
+		configure()
+	}
   
   required init?(coder: NSCoder) {
     super.init(coder: coder)
