@@ -10,4 +10,5 @@ import Foundation
 struct City: Hashable {
   let name, country: String
   let coord: Coordinate
+	let uuid = UUID()
 }
